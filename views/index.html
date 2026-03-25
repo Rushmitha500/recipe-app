@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipe App</title>
+
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+  />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="nav-wrapper recipe-nav">
+      <a href="#" class="brand-logo left logo-space">
+        <i class="material-icons">person</i>
+      </a>
+      <ul class="right">
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container center-align">
+    <h2>Welcome to SIT 725 Week 3</h2>
+    <p class="flow-text">
+      This is a demo application that uses Materialize components,
+      an Express backend, and a simple GET API endpoint.
+    </p>
+
+    <img src="/images/banner.png" alt="Recipe Banner" class="hero-img responsive-img" />
+
+    <br /><br />
+
+    <a class="waves-effect waves-light btn click-me-button modal-trigger" href="#modal1">
+  <i class="material-icons left">auto_fix_high</i>CLICK ME
+</a>
+
+    <br /><br />
+
+    <div class="row" id="card-section"></div>
+  </div>
+
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      
+      <form id="recipeForm">
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="first_name" type="text" name="first_name" required>
+            <label for="first_name">First Name</label>
+          </div>
+
+          <div class="input-field col s6">
+            <input id="last_name" type="text" name="last_name" required>
+            <label for="last_name">Last Name</label>
+          </div>
+        </div>
+
+        <div class="row">
+  <div class="input-field col s12">
+    <input id="password" type="password" class="validate" required />
+    <label for="password">Password</label>
+  </div>
+</div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="email" type="email" name="email" required>
+            <label for="email">Email</label>
+          </div>
+        </div>
+
+        <div class="center-align">
+          <button class="btn waves-effect waves-light" type="submit">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="/js/scripts.js"></script>
+</body>
+</html>

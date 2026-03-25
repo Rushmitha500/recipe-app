@@ -1,0 +1,39 @@
+body {
+  background-color: #f7b2b7;
+  min-height: 100vh;
+}
+
+.recipe-nav {
+  background-color: #d96c75;
+  padding: 0 20px;
+}
+
+.logo-space {
+  margin-left: 10px;
+}
+
+.container {
+  margin-top: 30px;
+}
+
+.hero-img {
+  max-width: 320px;
+  margin-top: 20px;
+}
+
+.card-image img {
+  height: 220px;
+  object-fit: cover;
+}
+
+.modal {
+  max-width: 800px;
+}
+.click-me-button {
+  background-color: #d96c75;   
+  color: white;
+  border-radius: 6px;
+}
+.click-me-button:hover {
+  background-color: #c75b63;
+}
