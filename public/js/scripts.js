@@ -1,74 +1,87 @@
-const submitForm = () => {
-  const formData = {
-    first_name: $('#first_name').val(),
-    last_name: $('#last_name').val(),
-    password: $('#password').val(),
-    email: $('#email').val()
-  };
-
-  console.log('Form Data Submitted:', formData);
-};
-
 const addCards = (items) => {
   $('#card-section').empty();
 
   items.forEach((item) => {
-    const itemToAppend = `
-      <div class="col s12 m6 l4 center-align">
+    const card = `
+      <div class="col s12 m6 l4">
         <div class="card medium hoverable">
-          <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" src="${item.image}" alt="${item.title}">
+          <div class="card-image">
+            <img src="${item.image}" alt="${item.recipeName}">
           </div>
-
           <div class="card-content">
             <span class="card-title activator grey-text text-darken-4">
-              ${item.title}
+              ${item.recipeName}
               <i class="material-icons right">more_vert</i>
             </span>
-            <p><a href="#">${item.link}</a></p>
+            <p><strong>${item.cuisineType}</strong> • ${item.cookingTime}</p>
           </div>
-
           <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">
-              ${item.title}
+              ${item.recipeName}
               <i class="material-icons right">close</i>
             </span>
-            <p class="card-text">${item.description}</p>
+            <p><strong>Difficulty:</strong> ${item.difficulty}</p>
+            <p>${item.description}</p>
           </div>
         </div>
       </div>
     `;
-
-    $('#card-section').append(itemToAppend);
+    $('#card-section').append(card);
   });
 };
 
 const getRecipes = () => {
   fetch('/recipes')
     .then((response) => response.json())
-    .then((result) => {
-      if (result.statusCode === 200) {
-        addCards(result.data);
+    .then((data) => {
+      if (data.statusCode === 200) {
+        addCards(data.data);
       }
     })
     .catch((error) => {
-      console.error('Error loading recipes:', error);
+      console.log('Error loading recipes:', error);
+    });
+};
+
+const submitForm = () => {
+  const formData = {
+    recipeName: $('#recipeName').val(),
+    cuisineType: $('#cuisineType').val(),
+    cookingTime: $('#cookingTime').val(),
+    difficulty: $('#difficulty').val(),
+    image: $('#image').val(),
+    description: $('#description').val()
+  };
+
+  fetch('/recipes', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(formData)
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.statusCode === 200) {
+        M.toast({ html: 'Recipe added successfully' });
+        $('#recipeForm')[0].reset();
+        M.updateTextFields();
+        getRecipes();
+        const instance = M.Modal.getInstance(document.getElementById('modal1'));
+        instance.close();
+      }
+    })
+    .catch((error) => {
+      console.log('Error adding recipe:', error);
     });
 };
 
 $(document).ready(function () {
-  $('.materialboxed').materialbox();
   $('.modal').modal();
-
   getRecipes();
 
-  $('#recipeForm').on('submit', function (event) {
-    event.preventDefault();
+  $('#recipeForm').on('submit', function (e) {
+    e.preventDefault();
     submitForm();
-    M.toast({ html: 'Form submitted successfully' });
-    $('#recipeForm')[0].reset();
-    M.updateTextFields();
-    const instance = M.Modal.getInstance(document.getElementById('modal1'));
-    instance.close();
   });
 });

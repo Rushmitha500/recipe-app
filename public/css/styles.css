@@ -27,13 +27,15 @@ body {
 }
 
 .modal {
-  max-width: 800px;
+  max-width: 700px;
 }
+
 .click-me-button {
-  background-color: #d96c75;   
+  background-color: #d96c75;
   color: white;
   border-radius: 6px;
 }
+
 .click-me-button:hover {
   background-color: #c75b63;
 }
